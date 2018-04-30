@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="/javascripts/jquery-3.3.1.min.js"></script>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+<script>
+		function getPost(mode)
+		{
+			var theForm = document.frmSubmit;
+			if(mode == "01")
+			{
+				theForm.action = "/board/update"
+				theForm.method = "get"
+			}
+			else if(mode == "02")
+			{
+				theForm.action = "/board/delete"
+				theForm.method = "get"
+			}
+			theForm.submit();
+		}
+</script>
+	<body>
+		<h1><%= title %></h1>
+		<form name = frmSubmit>
+			<table border="1">
+				<input type="hidden" name="idx" value="<%=row.idx%>"/>
+				<tr>
+					<td>작성자</td>
+					<td><%=row.creator_id%></td>
+				</tr>
+				<tr>
+					<td>제목</td>
+					<td><%=row.title%></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td><%=row.content%></td>
+				</tr>
+				<tr>
+					<td>조회수</td>
+					<td><%=row.hit%></td>
+				</tr>
+				<tr>
+						<td colspan ="2">
+							<input type = button value = '글 수정' onClick="getPost('01')">
+							<input type = button value = '글 삭제' onClick="getPost('02')">
+						</td>
+				</tr>
+				<tr>
+					<td><a href="/board">리스트로 돌아가기</a></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+

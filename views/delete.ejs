@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<script src="/javascripts/jquery-3.3.1.min.js"></script>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<form action="/board/delete" method="post" onsubmit="return onWriteSubmit()">
+		<table border="1">
+				<input type="hidden" name="idx" value="<%=row.idx%>"/>
+				<tr>
+					<td>작성자</td>
+					<td><%=row.creator_id%></td>
+				</tr>
+				<tr>
+					<td>제목</td>
+					<td><%=row.title%></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td><%=row.content%></td>
+				</tr>
+				<tr>
+					<td>조회수</td>
+					<td><%=row.hit%></td>
+				</tr>
+				<tr>
+					<td>패스워드</td>
+					<td><input type="password" name="passwd" id="passwd" required/></td>
+				</tr>
+				<tr>
+						<td colspan ="2">
+							<button type = "submit">확인</button>
+							<a href="/board">리스트로 돌아가기</a>
+						</td>
+				</tr>
+			</table>
+	</body>
+	<script>
+			function onWriteSubmit()
+			{
+				if( $("#passwd").val().trim() == "")
+				{
+					var message = "패스워드를 입력해 주세요";
+					$("#passwd").val("");
+					$("#passwd").focus();
+					alert(message);
+					return false;
+				}
+			}
+		</script>
+</html>
